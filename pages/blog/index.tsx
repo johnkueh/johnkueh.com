@@ -1,7 +1,6 @@
 import Head from "next/head";
-import Link from "next/link";
 import { getArticles } from "../../shared/api";
-import Card from "../../shared/Card";
+import ListOfCards from "../../shared/ListOfCards";
 
 export default function Blog({ tableData }) {
   return (
@@ -11,17 +10,13 @@ export default function Blog({ tableData }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>Blog</h1>
-      <div>
-        {tableData.map(({ id, Name, Caption, Slug }) => {
-          return (
-            <Link key={id} href={`/blog/${Slug}`}>
-              <a>
-                <Card title={Name} caption={Caption} />
-              </a>
-            </Link>
-          );
-        })}
-      </div>
+      <ListOfCards
+        cards={tableData.map((project) => ({
+          title: project.Name,
+          caption: project.Caption,
+          href: `/blog/${project.Slug}`,
+        }))}
+      />
     </div>
   );
 }

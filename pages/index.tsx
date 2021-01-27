@@ -1,10 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
-import { getProjects } from "../shared/api";
-import Card from "../shared/Card";
+import { getArticles, getProjects } from "../shared/api";
 import LetsBuildSomethingTogether from "../shared/LetsBuildSomethingTogether";
+import ListOfCards from "../shared/ListOfCards";
 
-export default function Home({ tableData }) {
+export default function Home({ projects, articles }) {
   return (
     <div>
       <Head>
@@ -21,6 +21,20 @@ export default function Home({ tableData }) {
           <a>More about me</a>
         </Link>
       </div>
+      <h2>Blog</h2>
+      <p>I write about my observations in life and things I love doing.</p>
+      <div>
+        <Link href="/blog">
+          <a>View all</a>
+        </Link>
+      </div>
+      <ListOfCards
+        cards={articles.map((article) => ({
+          title: article.Name,
+          caption: article.Caption,
+          href: `/blog/${article.Slug}`,
+        }))}
+      />
       <h2>My work</h2>
       <p>
         Here's a small selection of my latest work. They range from small tools
@@ -31,28 +45,26 @@ export default function Home({ tableData }) {
           <a>View all</a>
         </Link>
       </div>
-      <div>
-        {tableData.map(({ id, Name, Caption, Slug }) => {
-          return (
-            <Link key={id} href={`/work/${Slug}`}>
-              <a>
-                <Card title={Name} caption={Caption} />
-              </a>
-            </Link>
-          );
-        })}
-      </div>
+      <ListOfCards
+        cards={projects.map((project) => ({
+          title: project.Name,
+          caption: project.Caption,
+          href: `/work/${project.Slug}`,
+        }))}
+      />
       <LetsBuildSomethingTogether />
     </div>
   );
 }
 
 export async function getStaticProps() {
-  const data = await getProjects();
+  const projects = await getProjects();
+  const articles = await getArticles();
 
   return {
     props: {
-      tableData: data,
+      projects,
+      articles,
     },
   };
 }

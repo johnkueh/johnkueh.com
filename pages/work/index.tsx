@@ -1,8 +1,7 @@
 import Head from "next/head";
-import Link from "next/link";
 import { getProjects } from "../../shared/api";
-import Card from "../../shared/Card";
 import LetsBuildSomethingTogether from "../../shared/LetsBuildSomethingTogether";
+import ListOfCards from "../../shared/ListOfCards";
 
 export default function Work({ tableData }) {
   return (
@@ -16,17 +15,13 @@ export default function Work({ tableData }) {
         Here's a list of everything I've worked on. They range from small tools
         to software for large companies.
       </p>
-      <div>
-        {tableData.map(({ id, Name, Caption, Slug }) => {
-          return (
-            <Link key={id} href={`/work/${Slug}`}>
-              <a>
-                <Card title={Name} caption={Caption} />
-              </a>
-            </Link>
-          );
-        })}
-      </div>
+      <ListOfCards
+        cards={tableData.map((project) => ({
+          title: project.Name,
+          caption: project.Caption,
+          href: `/work/${project.Slug}`,
+        }))}
+      />
       <LetsBuildSomethingTogether />
     </div>
   );
