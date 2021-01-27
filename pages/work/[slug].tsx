@@ -4,7 +4,7 @@ import { NotionRenderer } from "react-notion";
 import "react-notion/src/styles.css";
 import { getPage, getProjects } from "../../shared/api";
 
-export default function Home({ page, blockMap }) {
+export default function Project({ page, blockMap }) {
   return (
     <div>
       <Head>
