@@ -41,3 +41,9 @@ export async function getArticle(slug: string) {
     page, blockMap
   }
 }
+
+export async function getTestimonials() {
+  return fetch(
+    "https://notion-api.splitbee.io/v1/table/719bbddfe8374a60a7524f466cb05176"
+  ).then((res) => res.json());
+}

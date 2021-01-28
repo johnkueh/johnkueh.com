@@ -1,4 +1,6 @@
 import Head from "next/head";
+import React from "react";
+import { getTestimonials } from "../shared/api";
 
 export default function Home({ tableData }) {
   return (
@@ -23,6 +25,27 @@ export default function Home({ tableData }) {
         Find me on <a href="https://twitter.com/johnkueh">Twitter</a> (DMs are
         open), or on <a href="https://github.com/johnkueh">GitHub</a>
       </p>
+
+      <h2>Kind words from other people ❤️</h2>
+      {tableData.map(({ Name, Position, Comment }) => {
+        return (
+          <div>
+            <h3>{Name}</h3>
+            <h4>{Position}</h4>
+            <p>{Comment}</p>
+          </div>
+        );
+      })}
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const data = await getTestimonials();
+
+  return {
+    props: {
+      tableData: data,
+    },
+  };
 }
