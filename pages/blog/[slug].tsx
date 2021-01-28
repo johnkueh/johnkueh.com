@@ -13,7 +13,29 @@ export default function Article({ page, blockMap }) {
 
       <h1>{page.Name}</h1>
       <p>{page.Caption}</p>
-      <NotionRenderer blockMap={blockMap} />
+      <NotionRenderer
+        blockMap={blockMap}
+        customBlockComponents={{
+          video: ({
+            blockValue,
+            blockValue: {
+              properties: { caption, source },
+            },
+          }) => {
+            return (
+              <div>
+                <video width="400" controls>
+                  <source src={source} type="video/mov" />
+                </video>
+                <div>
+                  {caption} / {source}
+                </div>
+                <div>{JSON.stringify(blockValue)}</div>
+              </div>
+            );
+          },
+        }}
+      />
     </div>
   );
 }
