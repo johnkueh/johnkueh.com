@@ -1,31 +1,26 @@
 import Head from "next/head";
 import Link from "next/link";
-import { getArticles, getProjects } from "../shared/api";
-import LetsBuildSomethingTogether from "../shared/LetsBuildSomethingTogether";
+import { getArticles } from "../shared/api";
 import ListOfCards from "../shared/ListOfCards";
 
 export default function Home({ projects, articles }) {
   return (
     <div>
       <Head>
-        <title>John Kueh - React and TypeScript Engineer</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>John Kueh</title>
+        <link
+          rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👋</text></svg>"
+        />
       </Head>
-      <h1>John Kueh</h1>
+      <h1>Hey, I'm John</h1>
       <p>
-        👋 I'm a JavaScript engineer living in Sydney, Australia. I love
-        creating useful products using React and Node.
+        I'm a software engineer and hobby chef, living in Sydney. I'm currently
+        building mindful moments on the web at Insight Timer.
       </p>
       <div>
         <Link href="/about">
           <a>More about me</a>
-        </Link>
-      </div>
-      <h2>Blog</h2>
-      <p>I write about my observations in life and things I love doing.</p>
-      <div>
-        <Link href="/blog">
-          <a>View all</a>
         </Link>
       </div>
       <ListOfCards
@@ -35,35 +30,15 @@ export default function Home({ projects, articles }) {
           href: `/blog/${article.Slug}`,
         }))}
       />
-      <h2>My work</h2>
-      <p>
-        Here's a small selection of my latest work. They range from small tools
-        to software for large companies.
-      </p>
-      <div>
-        <Link href="/work">
-          <a>View all</a>
-        </Link>
-      </div>
-      <ListOfCards
-        cards={projects.map((project) => ({
-          title: project.Name,
-          caption: project.Caption,
-          href: `/work/${project.Slug}`,
-        }))}
-      />
-      <LetsBuildSomethingTogether />
     </div>
   );
 }
 
 export async function getStaticProps() {
-  const projects = await getProjects();
   const articles = await getArticles();
 
   return {
     props: {
-      projects,
       articles,
     },
   };
