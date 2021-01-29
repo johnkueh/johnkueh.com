@@ -2,7 +2,7 @@ import Head from "next/head";
 import React from "react";
 import { getTestimonials } from "../shared/api";
 
-export default function Home({ tableData }) {
+export default function About({ tableData }) {
   return (
     <div>
       <Head>
@@ -27,9 +27,9 @@ export default function Home({ tableData }) {
       </p>
 
       <h2>Kind words from other people ❤️</h2>
-      {tableData.map(({ Name, Position, Comment }) => {
+      {tableData.map(({ id, Name, Position, Comment }) => {
         return (
-          <div>
+          <div key={id}>
             <h3>{Name}</h3>
             <h4>{Position}</h4>
             <p>{Comment}</p>

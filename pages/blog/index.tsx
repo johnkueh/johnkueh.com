@@ -12,6 +12,7 @@ export default function Blog({ tableData }) {
       <h1>Blog</h1>
       <ListOfCards
         cards={tableData.map((project) => ({
+          id: project.id,
           title: project.Name,
           caption: project.Caption,
           href: `/blog/${project.Slug}`,

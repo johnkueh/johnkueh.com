@@ -13,6 +13,7 @@ export default function Projects({ tableData }) {
       <p>A list of everything I've worked on in the last few years.</p>
       <ListOfCards
         cards={tableData.map((project) => ({
+          id: project.id,
           title: project.Name,
           caption: project.Caption,
           href: `/projects/${project.Slug}`,

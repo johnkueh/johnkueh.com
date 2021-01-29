@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getArticles } from "../shared/api";
 import ListOfCards from "../shared/ListOfCards";
 
-export default function Home({ projects, articles }) {
+export default function Home({ articles }) {
   return (
     <div>
       <Head>
@@ -25,6 +25,7 @@ export default function Home({ projects, articles }) {
       </div>
       <ListOfCards
         cards={articles.map((article) => ({
+          id: article.id,
           title: article.Name,
           caption: article.Caption,
           href: `/blog/${article.Slug}`,
