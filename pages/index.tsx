@@ -9,8 +9,8 @@ export default function Home({ articles }) {
       <Box height={12} />
       <Heading as="h1">Hey, I'm John</Heading>
       <Text>
-        I'm a software engineer and hobby chef, living in Sydney. I'm currently
-        building mindful moments on the web at Insight Timer.
+        A software engineer 🖥 and hobby chef 🍱, living in Sydney, Australia.
+        I'm currently building mindful moments on the web at Insight Timer.
       </Text>
       <Box height={2} />
       <Box>
