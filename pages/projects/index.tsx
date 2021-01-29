@@ -1,4 +1,6 @@
+import { Box, Heading, Text } from "@chakra-ui/react";
 import Head from "next/head";
+import React from "react";
 import { getProjects } from "../../shared/api";
 import ListOfCards from "../../shared/ListOfCards";
 
@@ -8,8 +10,10 @@ export default function Projects({ tableData }) {
       <Head>
         <title>John Kueh - Projects</title>
       </Head>
-      <h1>Projects</h1>
-      <p>A list of everything I've worked on in the last few years.</p>
+      <Box height={12} />
+      <Heading as="h1">Projects</Heading>
+      <Text>A list of everything I've worked on in the last few years.</Text>
+      <Box height={6} />
       <ListOfCards
         cards={tableData.map((project) => ({
           id: project.id,

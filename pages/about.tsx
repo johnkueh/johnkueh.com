@@ -1,3 +1,4 @@
+import { Box, Divider, Heading, Link, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import React from "react";
 import { getTestimonials } from "../shared/api";
@@ -8,31 +9,50 @@ export default function About({ tableData }) {
       <Head>
         <title>About John Kueh</title>
       </Head>
-      <h1>About John Kueh</h1>
-
-      <p>
+      <Box height={12} />
+      <Heading as="h1">About John Kueh</Heading>
+      <Box height={6} />
+      <Text>
         I am a self-taught engineer and started programming around 10 years ago.
         My currently preferred stack is TypeScript and React.
-      </p>
-
-      <p>
+      </Text>
+      <Box height={6} />
+      <Text>
         Outside work, I love cooking and hosting dinner parties at home. I write
         about these a lot on my blog.
-      </p>
+      </Text>
+      <Box height={6} />
+      <Text>
+        Find me on{" "}
+        <Link color="blue.500" href="https://twitter.com/johnkueh">
+          Twitter
+        </Link>{" "}
+        (DMs are open), or on{" "}
+        <Link color="blue.500" href="https://github.com/johnkueh">
+          GitHub
+        </Link>
+      </Text>
 
-      <p>
-        Find me on <a href="https://twitter.com/johnkueh">Twitter</a> (DMs are
-        open), or on <a href="https://github.com/johnkueh">GitHub</a>
-      </p>
-
-      <h2>Kind words from other people ❤️</h2>
+      <Box height={12} />
+      <Heading size="md" as="h2">
+        🙏 Thank you for these kind people... 🙏
+      </Heading>
+      <Box height={6} />
       {tableData.map(({ id, Name, Position, Comment }) => {
         return (
-          <div key={id}>
-            <h3>{Name}</h3>
-            <h4>{Position}</h4>
-            <p>{Comment}</p>
-          </div>
+          <Box key={id}>
+            <Heading size="sm" as="h3">
+              {Name}
+            </Heading>
+            <Text color="gray.500" size="sm" as="h4">
+              {Position}
+            </Text>
+            <Box height={3} />
+            <Text>{Comment}</Text>
+            <Box height={6} />
+            <Divider />
+            <Box height={6} />
+          </Box>
         );
       })}
     </div>

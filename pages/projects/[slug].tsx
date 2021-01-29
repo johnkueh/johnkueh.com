@@ -1,5 +1,7 @@
+import { Box, Heading, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import "prismjs/themes/prism-tomorrow.css";
+import React from "react";
 import { NotionRenderer } from "react-notion";
 import "react-notion/src/styles.css";
 import { getPage, getProjects } from "../../shared/api";
@@ -10,9 +12,11 @@ export default function Project({ page, blockMap }) {
       <Head>
         <title>Project - {page.Name}</title>
       </Head>
-
-      <h1>{page.Name}</h1>
-      <p>{page.Caption}</p>
+      <Box height={12} />
+      <Heading as="h1">{page.Name}</Heading>
+      <Box height={3} />
+      <Text>{page.Caption}</Text>
+      <Box height={12} />
       <NotionRenderer blockMap={blockMap} />
     </div>
   );

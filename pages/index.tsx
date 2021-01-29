@@ -1,20 +1,24 @@
+import { Box, Heading, Link as ChakraLink, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { getArticles } from "../shared/api";
 import ListOfCards from "../shared/ListOfCards";
 
 export default function Home({ articles }) {
   return (
-    <div>
-      <h1>Hey, I'm John</h1>
-      <p>
+    <>
+      <Box height={12} />
+      <Heading as="h1">Hey, I'm John</Heading>
+      <Text>
         I'm a software engineer and hobby chef, living in Sydney. I'm currently
         building mindful moments on the web at Insight Timer.
-      </p>
-      <div>
+      </Text>
+      <Box height={2} />
+      <Box>
         <Link href="/about">
-          <a>More about me</a>
+          <ChakraLink color="blue.500">More about me</ChakraLink>
         </Link>
-      </div>
+      </Box>
+      <Box height={12} />
       <ListOfCards
         cards={articles.map((article) => ({
           id: article.id,
@@ -23,7 +27,7 @@ export default function Home({ articles }) {
           href: `/blog/${article.Slug}`,
         }))}
       />
-    </div>
+    </>
   );
 }
 
