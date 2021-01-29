@@ -7,7 +7,6 @@ export default function Blog({ tableData }) {
     <div>
       <Head>
         <title>John Kueh - Blog</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>Blog</h1>
       <ListOfCards

@@ -7,7 +7,6 @@ export default function About({ tableData }) {
     <div>
       <Head>
         <title>About John Kueh</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>About John Kueh</h1>
 

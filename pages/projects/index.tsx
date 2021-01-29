@@ -7,7 +7,6 @@ export default function Projects({ tableData }) {
     <div>
       <Head>
         <title>John Kueh - Projects</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>Projects</h1>
       <p>A list of everything I've worked on in the last few years.</p>
