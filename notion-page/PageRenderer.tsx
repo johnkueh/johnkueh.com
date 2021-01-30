@@ -3,6 +3,7 @@ import "prismjs/themes/prism-tomorrow.css";
 import React from "react";
 import { NotionRenderer } from "react-notion";
 import "react-notion/src/styles.css";
+import Link from "../shared/Link";
 
 const PageRenderer = ({ page, blockMap }) => {
   return (
@@ -14,6 +15,11 @@ const PageRenderer = ({ page, blockMap }) => {
       <Box height={12} />
       <NotionRenderer
         blockMap={blockMap}
+        customDecoratorComponents={{
+          a: ({ decoratorValue, children }) => {
+            return <Link href={decoratorValue}>{children}</Link>;
+          },
+        }}
         customBlockComponents={{
           video: ({
             blockValue,
