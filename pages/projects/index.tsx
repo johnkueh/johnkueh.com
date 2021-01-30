@@ -12,6 +12,7 @@ export default function Projects({ tableData }) {
       </Head>
       <Box height={12} />
       <Heading as="h1">Projects</Heading>
+      <Box height={3} />
       <Text>A list of everything I've worked on in the last few years.</Text>
       <Box height={6} />
       <ListOfCards
