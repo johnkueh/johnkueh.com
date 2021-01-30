@@ -1,5 +1,7 @@
 import { ChakraProvider, HStack } from "@chakra-ui/react";
 import Head from "next/head";
+import "prismjs/themes/prism-tomorrow.css";
+import "react-notion/src/styles.css";
 import Link from "../shared/Link";
 import PageLayout from "../shared/PageLayout";
 

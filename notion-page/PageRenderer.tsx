@@ -1,8 +1,6 @@
 import { Box, Heading, Text } from "@chakra-ui/react";
-import "prismjs/themes/prism-tomorrow.css";
 import React from "react";
 import { NotionRenderer } from "react-notion";
-import "react-notion/src/styles.css";
 import Link from "../shared/Link";
 
 const PageRenderer = ({ page, blockMap }) => {
@@ -11,8 +9,8 @@ const PageRenderer = ({ page, blockMap }) => {
       <Box height={12} />
       <Heading as="h1">{page.Name}</Heading>
       <Box height={3} />
-      <Text>{page.Caption}</Text>
-      <Box height={12} />
+      <Text color="gray.500">{page.Caption}</Text>
+      <Box height={3} />
       <NotionRenderer
         blockMap={blockMap}
         customDecoratorComponents={{
@@ -28,7 +26,7 @@ const PageRenderer = ({ page, blockMap }) => {
             },
           }) => {
             return (
-              <div>
+              <Box>
                 <video width="400" controls>
                   <source src={source} type="video/mov" />
                 </video>
@@ -36,11 +34,17 @@ const PageRenderer = ({ page, blockMap }) => {
                   {caption} / {source}
                 </div>
                 <div>{JSON.stringify(blockValue)}</div>
-              </div>
+              </Box>
             );
           },
         }}
       />
+      <style jsx global>{`
+        div :global(.notion-list li) {
+          padding: 2px 0px;
+        }
+      `}</style>
+      <Box height={12} />
     </>
   );
 };

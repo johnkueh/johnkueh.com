@@ -1,7 +1,5 @@
 import Head from "next/head";
-import "prismjs/themes/prism-tomorrow.css";
 import React from "react";
-import "react-notion/src/styles.css";
 import PageRenderer from "../../notion-page/PageRenderer";
 import { getPage, getProjects } from "../../shared/api";
 
@@ -9,7 +7,7 @@ export default function Project({ page, blockMap }) {
   return (
     <div>
       <Head>
-        <title>Project - {page.Name}</title>
+        <title>{page.Name} | John Kueh</title>
       </Head>
       <PageRenderer page={page} blockMap={blockMap} />
     </div>
