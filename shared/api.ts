@@ -25,7 +25,6 @@ export async function getPageSlugById(id: string) {
     const blockMap = await fetch(
       `https://notion-api.splitbee.io/v1/page/${id}`
     ).then((res) => res.json());
-    console.log(blockMap);
     const slug = blockMap[Object.keys(blockMap)[0]]?.value.properties.FBDk[0][0]
     return slug
   } catch {

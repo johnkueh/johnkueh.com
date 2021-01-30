@@ -2,11 +2,16 @@ import { ChakraProvider, HStack } from "@chakra-ui/react";
 import Head from "next/head";
 import "prismjs/themes/prism-tomorrow.css";
 import "react-notion/src/styles.css";
+import { SWRConfig } from "swr";
 import Link from "../shared/Link";
 import PageLayout from "../shared/PageLayout";
 
 function MyApp({ Component, pageProps }) {
   return (
+    <SWRConfig value={{
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false
+    }}>
     <ChakraProvider>
       <Head>
         <title>John Kueh</title>
@@ -24,6 +29,7 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </PageLayout>
     </ChakraProvider>
+    </SWRConfig>
   );
 }
 

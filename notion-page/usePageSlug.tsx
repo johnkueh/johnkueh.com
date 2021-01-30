@@ -1,17 +1,10 @@
-import { useEffect, useState } from "react";
+import useSWR from "swr";
 import { getPageSlugById } from "../shared/api";
 
 export function usePageSlug(pageId: string) {
-  const [slug, setSlug] = useState<string>();
+  const { data, ...swrProps } = useSWR(`/blog/${pageId}`, () =>
+    getPageSlugById(pageId)
+  );
 
-  useEffect(() => {
-    async function fetchSlug() {
-      const slug = await getPageSlugById(pageId);
-      setSlug(slug);
-    }
-
-    fetchSlug();
-  }, []);
-
-  return { slug };
+  return { slug: data, ...swrProps };
 }
