@@ -1,6 +1,6 @@
-import { Box, Heading, Link as ChakraLink, Text } from "@chakra-ui/react";
-import Link from "next/link";
+import { Box, Heading, Text } from "@chakra-ui/react";
 import { getArticles } from "../shared/api";
+import Link from "../shared/Link";
 import ListOfCards from "../shared/ListOfCards";
 
 export default function Home({ articles }) {
@@ -14,9 +14,7 @@ export default function Home({ articles }) {
       </Text>
       <Box height={2} />
       <Box>
-        <Link href="/about">
-          <ChakraLink color="blue.500">More about me</ChakraLink>
-        </Link>
+        <Link href="/about">More about me</Link>
       </Box>
       <Box height={12} />
       <ListOfCards

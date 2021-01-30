@@ -1,5 +1,6 @@
-import { ChakraProvider, HStack, Link } from "@chakra-ui/react";
+import { ChakraProvider, HStack } from "@chakra-ui/react";
 import Head from "next/head";
+import Link from "../shared/Link";
 import PageLayout from "../shared/PageLayout";
 
 function MyApp({ Component, pageProps }) {
@@ -14,15 +15,9 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <PageLayout>
         <HStack py={3}>
-          <Link color="blue.500" href="/">
-            Blog
-          </Link>
-          <Link color="blue.500" href="/projects">
-            Projects
-          </Link>
-          <Link color="blue.500" href="/about">
-            About
-          </Link>
+          <Link href="/">Blog</Link>
+          <Link href="/projects">Projects</Link>
+          <Link href="/about">About</Link>
         </HStack>
         <Component {...pageProps} />
       </PageLayout>

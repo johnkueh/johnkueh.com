@@ -1,7 +1,8 @@
-import { Box, Divider, Heading, Link, Text } from "@chakra-ui/react";
+import { Box, Divider, Heading, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import React from "react";
 import { getTestimonials } from "../shared/api";
+import Link from "../shared/Link";
 
 export default function About({ tableData }) {
   return (
@@ -23,14 +24,8 @@ export default function About({ tableData }) {
       </Text>
       <Box height={6} />
       <Text>
-        Find me on{" "}
-        <Link color="blue.500" href="https://twitter.com/johnkueh">
-          Twitter
-        </Link>{" "}
-        (DMs are open), or on{" "}
-        <Link color="blue.500" href="https://github.com/johnkueh">
-          GitHub
-        </Link>
+        Find me on <Link href="https://twitter.com/johnkueh">Twitter</Link> (DMs
+        are open), or on <Link href="https://github.com/johnkueh">GitHub</Link>
       </Text>
 
       <Box height={12} />
