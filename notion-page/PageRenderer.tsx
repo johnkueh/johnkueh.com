@@ -2,6 +2,8 @@ import { AspectRatio, Box, Heading, Text } from "@chakra-ui/react";
 import React from "react";
 import { ContentValueType, NotionRenderer } from "react-notion";
 import Link from "../shared/Link";
+import BlogLink from "./BlogLink";
+import { isValidHttpUrl } from "./is-valid-url";
 
 const PageRenderer = ({ page, blockMap }) => {
   return (
@@ -15,7 +17,12 @@ const PageRenderer = ({ page, blockMap }) => {
         blockMap={blockMap}
         customDecoratorComponents={{
           a: ({ decoratorValue, children }) => {
-            return <Link href={decoratorValue}>{children}</Link>;
+            const isUrl = isValidHttpUrl(decoratorValue);
+            if (isUrl) {
+              return <Link href={decoratorValue}>{children}</Link>;
+            } else {
+              return <BlogLink path={decoratorValue}>{children}</BlogLink>;
+            }
           },
         }}
         customBlockComponents={{

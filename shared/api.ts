@@ -20,6 +20,19 @@ export async function getPage(slug: string) {
   }
 }
 
+export async function getPageSlugById(id: string) {
+  try {
+    const blockMap = await fetch(
+      `https://notion-api.splitbee.io/v1/page/${id}`
+    ).then((res) => res.json());
+    console.log(blockMap);
+    const slug = blockMap[Object.keys(blockMap)[0]]?.value.properties.FBDk[0][0]
+    return slug
+  } catch {
+    return null
+  }
+}
+
 export async function getArticles() {
   return fetch(
     "https://notion-api.splitbee.io/v1/table/2d9b070b663a4b4380a415581d9aa00e"
