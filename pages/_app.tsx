@@ -1,12 +1,35 @@
 import { ChakraProvider, HStack } from "@chakra-ui/react";
+import * as Fathom from 'fathom-client';
 import Head from "next/head";
+import { useRouter } from 'next/router';
 import "prismjs/themes/prism-tomorrow.css";
+import { useEffect } from 'react';
 import "react-notion/src/styles.css";
 import { SWRConfig } from "swr";
 import Link from "../shared/Link";
 import PageLayout from "../shared/PageLayout";
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter()
+
+  useEffect(() => {
+    // Initialize Fathom when the app loads
+    Fathom.load('SPFEBIZE', {
+      includedDomains: ['johnkueh.com', 'www.johnkueh.com'],
+    })
+
+    function onRouteChangeComplete() {
+      Fathom.trackPageview()
+    }
+    // Record a pageview when route changes
+    router.events.on('routeChangeComplete', onRouteChangeComplete)
+
+    // Unassign event listener
+    return () => {
+      router.events.off('routeChangeComplete', onRouteChangeComplete)
+    }
+  }, [])
+
   return (
     <SWRConfig value={{
       revalidateOnFocus: false,
