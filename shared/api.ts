@@ -1,5 +1,5 @@
 function filterPublished(collection: any) {
-  return collection.filter(entry => entry['Status'] === "Published")
+  return collection.filter(entry => entry['Status'] === "Published") ?? [];
 }
 
 export async function getProjects() {
