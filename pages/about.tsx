@@ -30,7 +30,7 @@ export default function About({ tableData }) {
 
       <Box height={12} />
       <Heading size="md" as="h2">
-        🙏 Thank you for these kind people... 🙏
+        What people say
       </Heading>
       <Box height={6} />
       {tableData.map(({ id, Name, Position, Comment }) => {
