@@ -7,16 +7,14 @@ import { getPage, getProjects } from "../../shared/api";
 
 export default function Project({ page, blockMap }) {
   const router = useRouter();
+  if (true) return <Spinner my={5} />;
+
   return (
     <Box>
       <Head>
         <title>{page.Name} | John Kueh</title>
       </Head>
-      {router.isFallback ? (
-        <Spinner my={5} />
-      ) : (
-        <PageRenderer page={page} blockMap={blockMap} />
-      )}
+      <PageRenderer page={page} blockMap={blockMap} />
     </Box>
   );
 }

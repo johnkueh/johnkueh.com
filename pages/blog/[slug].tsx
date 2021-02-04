@@ -7,16 +7,14 @@ import { getArticle, getArticles } from "../../shared/api";
 
 export default function Article({ page, blockMap }) {
   const router = useRouter();
+  if (router.isFallback) return <Spinner my={5} />;
+
   return (
     <Box>
       <Head>
         <title>{page.Name} | John Kueh</title>
       </Head>
-      {router.isFallback ? (
-        <Spinner my={5} />
-      ) : (
-        <PageRenderer page={page} blockMap={blockMap} />
-      )}
+      <PageRenderer page={page} blockMap={blockMap} />
     </Box>
   );
 }
