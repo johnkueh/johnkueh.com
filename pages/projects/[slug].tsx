@@ -7,7 +7,7 @@ import { getPage, getProjects } from "../../shared/api";
 
 export default function Project({ page, blockMap }) {
   const router = useRouter();
-  if (true) return <Spinner my={5} />;
+  if (router.isFallback) return <Spinner my={5} />;
 
   return (
     <Box>
