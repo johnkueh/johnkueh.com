@@ -1,16 +1,23 @@
+import { Box, Spinner } from "@chakra-ui/react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import React from "react";
 import PageRenderer from "../../notion-page/PageRenderer";
 import { getPage, getProjects } from "../../shared/api";
 
 export default function Project({ page, blockMap }) {
+  const router = useRouter();
   return (
-    <div>
+    <Box>
       <Head>
         <title>{page.Name} | John Kueh</title>
       </Head>
-      <PageRenderer page={page} blockMap={blockMap} />
-    </div>
+      {router.isFallback ? (
+        <Spinner my={5} />
+      ) : (
+        <PageRenderer page={page} blockMap={blockMap} />
+      )}
+    </Box>
   );
 }
 
@@ -23,7 +30,7 @@ export async function getStaticPaths() {
         params: { slug: project.Slug },
       };
     }),
-    fallback: false,
+    fallback: true,
   };
 }
 
