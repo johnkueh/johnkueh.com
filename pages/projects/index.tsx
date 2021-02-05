@@ -13,7 +13,10 @@ export default function Projects({ tableData }) {
       <Box height={12} />
       <Heading as="h1">Projects</Heading>
       <Box height={3} />
-      <Text>A list of everything I've worked on in the last few years.</Text>
+      <Text>
+        A list of everything I've worked on (mostly software) in the last few
+        years.
+      </Text>
       <Box height={6} />
       <ListOfCards
         cards={tableData.map((project) => ({

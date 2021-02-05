@@ -14,18 +14,21 @@ export default function About({ tableData }) {
       <Heading as="h1">About John Kueh</Heading>
       <Box height={6} />
       <Text>
-        I am a self-taught engineer and started programming around 10 years ago.
-        My currently preferred stack is TypeScript and React.
+        My love for software started 10 years ago. Lately, I prefer to build
+        with TypeScript and React. I'm currently contributing as a software
+        engineer at <Link href="https://insighttimer.com">Insight Timer</Link>
       </Text>
       <Box height={6} />
       <Text>
-        Outside work, I love cooking and hosting dinner parties at home. I write
-        about these a lot on my blog.
+        Outside work, I love cooking and hosting dinner parties at home. I share
+        these experiences a lot on my blog. Creative freedom feeds my soul.
       </Text>
       <Box height={6} />
       <Text>
-        Find me on <Link href="https://twitter.com/johnkueh">Twitter</Link> (DMs
-        are open), or on <Link href="https://github.com/johnkueh">GitHub</Link>
+        Please follow and connect with me on{" "}
+        <Link href="https://twitter.com/johnkueh">Twitter</Link> (DMs are open),
+        or check out my work on{" "}
+        <Link href="https://github.com/johnkueh">GitHub</Link>
       </Text>
 
       <Box height={12} />

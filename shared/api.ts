@@ -69,3 +69,9 @@ export async function getTestimonials() {
 
   return filterPublished(data);
 }
+
+export async function getDailyBread() {
+  return fetch(
+    "https://notion-api.splitbee.io/v1/table/ea4d39a76135405d9c86d4fa4893d62b"
+  ).then((res) => res.json());
+}

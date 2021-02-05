@@ -1,13 +1,21 @@
 import { ChakraProvider, HStack } from "@chakra-ui/react";
 import * as Fathom from 'fathom-client';
 import Head from "next/head";
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
 import "prismjs/themes/prism-tomorrow.css";
 import { useEffect } from 'react';
 import "react-notion/src/styles.css";
 import { SWRConfig } from "swr";
 import Link from "../shared/Link";
 import PageLayout from "../shared/PageLayout";
+
+Router.events.on('routeChangeStart', () => {
+  NProgress.start();
+});
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
@@ -44,8 +52,9 @@ function MyApp({ Component, pageProps }) {
         />
       </Head>
       <PageLayout>
-        <HStack py={3}>
+        <HStack py={3} spacing={6}>
           <Link href="/">Blog</Link>
+          <Link href="/daily">Daily Bread</Link>
           <Link href="/projects">Projects</Link>
           <Link href="/about">About</Link>
         </HStack>
