@@ -2,7 +2,7 @@ import { Box, Spinner } from "@chakra-ui/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
-import PageRenderer from "../../notion-page/PageRenderer";
+import PageRenderer from "../../features/notion-page/PageRenderer";
 import { getPage, getProjects } from "../../shared/api";
 
 export default function Project({ page, blockMap }) {

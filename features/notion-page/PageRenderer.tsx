@@ -1,7 +1,7 @@
 import { AspectRatio, Box, Heading, Text } from "@chakra-ui/react";
 import React from "react";
 import { ContentValueType, NotionRenderer } from "react-notion";
-import Link from "../shared/Link";
+import Link from "../../shared/Link";
 import BlogLink from "./BlogLink";
 import { isValidHttpUrl } from "./is-valid-url";
 

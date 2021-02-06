@@ -1,4 +1,4 @@
-import Link from "../shared/Link";
+import Link from "../../shared/Link";
 import { usePageSlug } from "./usePageSlug";
 
 const PageLink = ({ path, children }) => {

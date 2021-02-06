@@ -1,10 +1,10 @@
-import { ChatIcon } from "@chakra-ui/icons";
 import { Box, Divider, Flex, Heading, Text } from "@chakra-ui/react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import Head from "next/head";
 import React from "react";
-import DailyBreadRenderer from "../notion-page/DailyBreadRenderer";
+import DailyBreadIcon from "../features/daily-bread/DailyBreadIcon";
+import DailyBreadRenderer from "../features/daily-bread/DailyBreadRenderer";
 import { getDailyBread } from "../shared/api";
 
 dayjs.extend(relativeTime);
@@ -28,17 +28,7 @@ export default function Daily({ tableData }) {
               flexBasis="40px"
               mr={10}
             >
-              <Flex
-                alignItems="center"
-                justifyContent="center"
-                boxSize="40px"
-                rounded="full"
-                bg="blue.400"
-                border="white 2px solid"
-                zIndex={100}
-              >
-                <ChatIcon color="blue.50" />
-              </Flex>
+              <DailyBreadIcon type={Type} />
               <Box
                 position="absolute"
                 width="1px"
