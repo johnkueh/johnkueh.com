@@ -1,5 +1,15 @@
+import { orderBy } from "lodash";
+
 function filterPublished(collection: any) {
   return collection.filter(entry => entry['Status'] === "Published") ?? [];
+}
+
+function getPageMeta(page: any) {
+  const { properties, created_time: createdTime } = page[Object.keys(page)[0]].value;
+  return {
+    title: properties.title[0][0],
+    createdTime
+  };
 }
 
 export async function getProjects() {
@@ -71,7 +81,22 @@ export async function getTestimonials() {
 }
 
 export async function getDailyBread() {
-  return fetch(
+  const collection = await fetch(
     "https://notion-api.splitbee.io/v1/table/ea4d39a76135405d9c86d4fa4893d62b"
   ).then((res) => res.json());
+
+  const requests = collection.map(async entry => {
+    const entryData = await fetch(
+      `https://notion-api.splitbee.io/v1/page/${entry.id}`
+    ).then((res) => res.json())
+    return {
+      ...getPageMeta(entryData),
+      ...entry,
+      blockMap: entryData
+    }
+  })
+
+  const data = await Promise.all(requests);
+
+  return orderBy(data, 'createdTime', 'desc');
 }
