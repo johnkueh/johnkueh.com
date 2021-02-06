@@ -1,10 +1,9 @@
-import { Box, Flex, Img, Text } from "@chakra-ui/react";
+import { Box, Img, Text, Wrap, WrapItem } from "@chakra-ui/react";
 import { compact } from "lodash";
 import get from "lodash/get";
 
 const DailyBreadRenderer = ({ blockMap }) => {
   const { textBlocks, imageBlocks } = parseBlocks(blockMap);
-  console.log(textBlocks);
   return (
     <Box>
       {textBlocks.map(({ id, text }) => {
@@ -15,31 +14,27 @@ const DailyBreadRenderer = ({ blockMap }) => {
         );
       })}
       <Box height={3} />
-      <Flex flexWrap="wrap">
+      <Wrap spacing="20px" align="center">
         {imageBlocks.map(({ id, src, caption }) => {
-          const aspectRatio = 16 / 9;
-          const width = 290;
-          const height = width / aspectRatio;
           return (
-            <Box>
-              <Img
-                mr={7}
-                rounded="xl"
-                objectFit="cover"
-                width={width}
-                height={height}
-                id={id}
-                src={src}
-              />
-              <Flex height="28px" alignItems="center">
+            <WrapItem width="265px">
+              <Box>
+                <Img
+                  rounded="xl"
+                  objectFit="cover"
+                  // height={height}
+                  id={id}
+                  src={src}
+                />
                 <Text isTruncated fontSize="xs" color="gray.500">
                   {caption}
                 </Text>
-              </Flex>
-            </Box>
+              </Box>
+            </WrapItem>
           );
         })}
-      </Flex>
+      </Wrap>
+      <Box height={6} />
     </Box>
   );
 };

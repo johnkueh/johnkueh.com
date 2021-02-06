@@ -10,7 +10,7 @@ export default function About({ tableData }) {
       <Head>
         <title>About John Kueh</title>
       </Head>
-      <Box height={12} />
+      <Box height={{ base: 5, md: 12, lg: 12, xl: 12 }} />
       <Heading as="h1">About John Kueh</Heading>
       <Box height={6} />
       <Text>

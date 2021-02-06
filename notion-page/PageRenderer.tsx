@@ -8,7 +8,7 @@ import { isValidHttpUrl } from "./is-valid-url";
 const PageRenderer = ({ page, blockMap }) => {
   return (
     <>
-      <Box height={12} />
+      <Box height={{ base: 5, md: 12, lg: 12, xl: 12 }} />
       <Heading as="h1">{page.Name}</Heading>
       <Box height={3} />
       <Text color="gray.500">{page.Caption}</Text>

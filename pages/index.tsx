@@ -6,7 +6,7 @@ import ListOfCards from "../shared/ListOfCards";
 export default function Home({ articles }) {
   return (
     <>
-      <Box height={12} />
+      <Box height={{ base: 5, md: 12, lg: 12, xl: 12 }} />
       <Heading as="h1">Hey, I'm John</Heading>
       <Box height={3} />
       <Box maxW="lg">
