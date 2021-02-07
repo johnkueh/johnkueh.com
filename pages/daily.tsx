@@ -15,9 +15,13 @@ export default function Daily({ tableData }) {
       <Head>
         <title>John Kueh - Daily Bread</title>
       </Head>
-      <Box height={{ base: 5, md: 12, lg: 12, xl: 12 }} />
+      <Box height={12} />
       <Heading as="h1">🍞 Daily Bread</Heading>
-
+      <Box height={3} />
+      <Text>
+        A new command I give you: Love one another. As I have loved you, so you
+        must love one another.
+      </Text>
       <Box height={12} />
       {tableData.map(({ id, Name, createdTime, Type, blockMap }) => {
         return (
@@ -26,7 +30,7 @@ export default function Daily({ tableData }) {
               position="relative"
               justifyContent="center"
               flexBasis="40px"
-              mr={10}
+              mr={5}
             >
               <DailyBreadIcon type={Type} />
               <Box

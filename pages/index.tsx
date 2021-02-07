@@ -1,4 +1,4 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
+import { Box, Divider, Heading, Text } from "@chakra-ui/react";
 import { getArticles } from "../shared/api";
 import Link from "../shared/Link";
 import ListOfCards from "../shared/ListOfCards";
@@ -6,7 +6,7 @@ import ListOfCards from "../shared/ListOfCards";
 export default function Home({ articles }) {
   return (
     <>
-      <Box height={{ base: 5, md: 12, lg: 12, xl: 12 }} />
+      <Box height={12} />
       <Heading as="h1">Hey, I'm John</Heading>
       <Box height={3} />
       <Box maxW="lg">
@@ -21,6 +21,8 @@ export default function Home({ articles }) {
         <Link href="/about">More about me</Link>
       </Box>
       <Box height={12} />
+      <Divider />
+      <Box height={6} />
       <ListOfCards
         cards={articles.map((article) => ({
           id: article.id,
