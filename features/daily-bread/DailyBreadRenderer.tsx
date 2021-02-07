@@ -1,20 +1,30 @@
-import { Box, Text, Wrap, WrapItem } from "@chakra-ui/react";
+import { Box, Wrap, WrapItem } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import { compact } from "lodash";
 import get from "lodash/get";
 import NextImage from "next/image";
+import React from "react";
+import { BlockMapType, NotionRenderer } from "react-notion";
 
 const DailyBreadRenderer = ({ blockMap }) => {
-  const { textBlocks, imageBlocks } = parseBlocks(blockMap);
+  const { imageBlocks } = parseBlocks(blockMap);
+  const textBlockMap = Object.values(blockMap).reduce<BlockMapType>(
+    (map, current: any) => {
+      if (current.value?.type !== "image") {
+        map[current.value?.id] = current;
+      }
+      return map;
+    },
+    {}
+  );
   return (
     <Box>
-      {textBlocks.map(({ id, text }) => {
-        return (
-          <Text minHeight="10px" id={id} whiteSpace="pre-wrap">
-            {text}
-          </Text>
-        );
-      })}
+      <NotionRenderer blockMap={textBlockMap} />
+      <style jsx global>{`
+        div :global(.notion-list li) {
+          padding: 0px 0px;
+        }
+      `}</style>
       <Box height={3} />
       <Wrap spacing={2} align="center">
         {imageBlocks.map(({ id, src, caption }) => {
