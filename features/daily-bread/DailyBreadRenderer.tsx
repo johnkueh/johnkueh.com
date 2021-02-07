@@ -1,6 +1,8 @@
-import { Box, Img, Text, Wrap, WrapItem } from "@chakra-ui/react";
+import { Box, Text, Wrap, WrapItem } from "@chakra-ui/react";
+import styled from "@emotion/styled";
 import { compact } from "lodash";
 import get from "lodash/get";
+import NextImage from "next/image";
 
 const DailyBreadRenderer = ({ blockMap }) => {
   const { textBlocks, imageBlocks } = parseBlocks(blockMap);
@@ -26,21 +28,13 @@ const DailyBreadRenderer = ({ blockMap }) => {
                 lg: "270px",
               }}
             >
-              <Box>
-                <Img
-                  position="absolute"
-                  rounded="xl"
-                  objectFit="cover"
-                  width="100%"
-                  height="100%"
-                  src={src}
-                />
-                {caption && (
-                  <Text mt={2} fontSize="xs" color="gray.500">
-                    {caption}
-                  </Text>
-                )}
-              </Box>
+              <Image
+                objectFit="cover"
+                alt={caption}
+                width={500}
+                height={500}
+                src={src}
+              />
             </WrapItem>
           );
         })}
@@ -49,6 +43,10 @@ const DailyBreadRenderer = ({ blockMap }) => {
     </Box>
   );
 };
+
+const Image = styled(NextImage)`
+  border-radius: 5px;
+`;
 
 function parseBlocks(blockMap) {
   const blocks = Object.values(blockMap);
