@@ -5,7 +5,7 @@ import Link from "./Link";
 const ListOfCards = ({ cards }) => {
   return (
     <div>
-      {cards.map(({ id, title, caption, href }) => {
+      {cards.map(({ id, title, caption, href, date }) => {
         return (
           <Link key={id} href={href} _hover={{ textDecoration: "none" }}>
             <Box height={3} />
@@ -13,6 +13,10 @@ const ListOfCards = ({ cards }) => {
               {title}
             </Heading>
             <Text color="gray.800">{caption}</Text>
+            <Box height={2} />
+            <Text fontSize="sm" color="gray.500">
+              {date}
+            </Text>
             <Box height={3} />
           </Link>
         );

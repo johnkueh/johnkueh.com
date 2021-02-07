@@ -1,4 +1,4 @@
-import { Box, Spinner } from "@chakra-ui/react";
+import { Box, Heading, Spinner, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
@@ -14,7 +14,13 @@ export default function Project({ page, blockMap }) {
       <Head>
         <title>{page.Name} | John Kueh</title>
       </Head>
+      <Box height={12} />
+      <Heading as="h1">{page.Name}</Heading>
+      <Box height={3} />
+      <Text color="gray.500">{page.Caption}</Text>
+      <Box height={3} />
       <PageRenderer page={page} blockMap={blockMap} />
+      <Box height={12} />
     </Box>
   );
 }

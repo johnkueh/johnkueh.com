@@ -1,7 +1,12 @@
 import { Box, Divider, Heading, Text } from "@chakra-ui/react";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import { timeFromNow } from "../features/notion-page/time-from-now";
 import { getArticles } from "../shared/api";
 import Link from "../shared/Link";
 import ListOfCards from "../shared/ListOfCards";
+
+dayjs.extend(relativeTime);
 
 export default function Home({ articles }) {
   return (
@@ -28,6 +33,7 @@ export default function Home({ articles }) {
           id: article.id,
           title: article.Name,
           caption: article.Caption,
+          date: `Updated ${timeFromNow(article.date)}`,
           href: `/blog/${article.Slug}`,
         }))}
       />

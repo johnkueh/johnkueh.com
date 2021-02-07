@@ -8,27 +8,38 @@ const DailyBreadRenderer = ({ blockMap }) => {
     <Box>
       {textBlocks.map(({ id, text }) => {
         return (
-          <Text id={id} whiteSpace="pre-wrap">
+          <Text minHeight="10px" id={id} whiteSpace="pre-wrap">
             {text}
           </Text>
         );
       })}
       <Box height={3} />
-      <Wrap spacing="20px" align="center">
+      <Wrap spacing={2} align="center">
         {imageBlocks.map(({ id, src, caption }) => {
           return (
-            <WrapItem width="265px">
+            <WrapItem
+              id={id}
+              position="relative"
+              boxSize={{
+                base: "130px",
+                md: "270px",
+                lg: "270px",
+              }}
+            >
               <Box>
                 <Img
+                  position="absolute"
                   rounded="xl"
                   objectFit="cover"
-                  // height={height}
-                  id={id}
+                  width="100%"
+                  height="100%"
                   src={src}
                 />
-                <Text isTruncated fontSize="xs" color="gray.500">
-                  {caption}
-                </Text>
+                {caption && (
+                  <Text mt={2} fontSize="xs" color="gray.500">
+                    {caption}
+                  </Text>
+                )}
               </Box>
             </WrapItem>
           );

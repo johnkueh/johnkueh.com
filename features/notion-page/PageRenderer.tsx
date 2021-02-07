@@ -1,4 +1,4 @@
-import { AspectRatio, Box, Heading, Text } from "@chakra-ui/react";
+import { AspectRatio, Box } from "@chakra-ui/react";
 import React from "react";
 import { ContentValueType, NotionRenderer } from "react-notion";
 import Link from "../../shared/Link";
@@ -8,11 +8,6 @@ import { isValidHttpUrl } from "./is-valid-url";
 const PageRenderer = ({ page, blockMap }) => {
   return (
     <>
-      <Box height={{ base: 5, md: 12, lg: 12, xl: 12 }} />
-      <Heading as="h1">{page.Name}</Heading>
-      <Box height={3} />
-      <Text color="gray.500">{page.Caption}</Text>
-      <Box height={3} />
       <NotionRenderer
         blockMap={blockMap}
         customDecoratorComponents={{
@@ -51,7 +46,6 @@ const PageRenderer = ({ page, blockMap }) => {
           padding: 2px 0px;
         }
       `}</style>
-      <Box height={12} />
     </>
   );
 };
