@@ -4,22 +4,19 @@ import { compact } from "lodash";
 import get from "lodash/get";
 import NextImage from "next/image";
 import React from "react";
-import { BlockMapType, NotionRenderer } from "react-notion";
+import { NotionRenderer } from "react-notion";
 
 const DailyBreadRenderer = ({ blockMap }) => {
   const { imageBlocks } = parseBlocks(blockMap);
-  const textBlockMap = Object.values(blockMap).reduce<BlockMapType>(
-    (map, current: any) => {
-      if (current.value?.type !== "image") {
-        map[current.value?.id] = current;
-      }
-      return map;
-    },
-    {}
-  );
   return (
     <Box>
-      <NotionRenderer blockMap={textBlockMap} />
+      <NotionRenderer
+        blockMap={blockMap}
+        customBlockComponents={{
+          // Dont render images - handle separately
+          image: () => null,
+        }}
+      />
       <style jsx global>{`
         div :global(.notion-list li) {
           padding: 0px 0px;
