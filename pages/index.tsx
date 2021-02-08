@@ -17,8 +17,7 @@ export default function Home({ articles }) {
       <Box maxW="lg">
         <Text>
           I am a software engineer and hobby chef 🍱, living in Sydney,
-          Australia. Welcome to my tiny little corner on the internet. Please
-          keep an open mind - you are entering my creative freedom.
+          Australia. Welcome to my tiny corner of creative freedom.
         </Text>
       </Box>
       <Box height={5} />
