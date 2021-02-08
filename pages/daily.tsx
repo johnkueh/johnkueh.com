@@ -5,6 +5,7 @@ import Head from "next/head";
 import React from "react";
 import DailyBreadIcon from "../features/daily-bread/DailyBreadIcon";
 import DailyBreadRenderer from "../features/daily-bread/DailyBreadRenderer";
+import LikeButton from "../features/like-button/LikeButton";
 import { getDailyBread } from "../shared/api";
 
 dayjs.extend(relativeTime);
@@ -48,9 +49,11 @@ export default function Daily({ tableData }) {
                   {Name}
                 </Heading>
               </Box>
-              <Text color="gray.500" fontSize="sm">
-                Updated {dayjs(createdTime).fromNow()}
-              </Text>
+              <Flex mt={1} alignItems="center" color="gray.500" fontSize="sm">
+                <LikeButton id={id} />
+                <Box mx={2}>/</Box>
+                <Text>Updated {dayjs(createdTime).fromNow()}</Text>
+              </Flex>
               <Box height={3} />
               <DailyBreadRenderer blockMap={blockMap} />
               <Box height={3} />
