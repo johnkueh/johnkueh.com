@@ -27,6 +27,7 @@ const DailyBreadRenderer = ({ blockMap }) => {
         {imageBlocks.map(({ id, src, caption }) => {
           return (
             <WrapItem
+              key={id}
               id={id}
               position="relative"
               boxSize={{
