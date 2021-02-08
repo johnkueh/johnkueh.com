@@ -1,9 +1,10 @@
-import { AspectRatio, Box } from "@chakra-ui/react";
 import React from "react";
-import { ContentValueType, NotionRenderer } from "react-notion";
+import { NotionRenderer } from "react-notion";
 import Link from "../../shared/Link";
 import BlogLink from "./BlogLink";
+import ImageRenderer from "./ImageRenderer";
 import { isValidHttpUrl } from "./is-valid-url";
+import VideoRenderer from "./VideoRenderer";
 
 const PageRenderer = ({ page, blockMap }) => {
   return (
@@ -21,23 +22,11 @@ const PageRenderer = ({ page, blockMap }) => {
           },
         }}
         customBlockComponents={{
+          image: ({ blockValue, renderComponent: Image }) => {
+            return <ImageRenderer blockValue={blockValue} />;
+          },
           video: ({ blockValue }) => {
-            const { format } = blockValue as ContentValueType;
-            if (format) {
-              return (
-                <Box>
-                  <AspectRatio
-                    maxW={format.block_width}
-                    ratio={1 / format.block_aspect_ratio}
-                  >
-                    <iframe
-                      src={`${format.display_source}&modestbranding=1&showinfo=0&rel=0&cc_load_policy=1&iv_load_policy=3&theme=light&fs=0`}
-                      frameBorder="0"
-                    />
-                  </AspectRatio>
-                </Box>
-              );
-            }
+            return <VideoRenderer blockValue={blockValue} />;
           },
         }}
       />
