@@ -21,7 +21,7 @@ export default function About({ tableData }) {
       <Box height={6} />
       <Text>
         Outside work, I love cooking and hosting dinner parties at home. I share
-        these experiences a lot on my blog. Creative freedom feeds my soul.
+        these experiences a lot on my blog.
       </Text>
       <Box height={6} />
       <Text>
