@@ -23,12 +23,6 @@ export default function Kitchen({ tableData }) {
       <Box height={3} />
       <Text>A list of things I am cooking up for this website</Text>
       <Box height={12} />
-      <Heading size="md">Completed</Heading>
-      <Box height={3} />
-      {getByStatus(tableData, "Completed").map((todo) => {
-        return <Todo key={todo.id} todo={todo} isChecked />;
-      })}
-      <Box height={12} />
       <Heading size="md">In Progress</Heading>
       <Box height={3} />
       {getByStatus(tableData, "In Progress").map((todo) => {
@@ -46,6 +40,12 @@ export default function Kitchen({ tableData }) {
       <Box height={3} />
       {getByStatus(tableData, undefined).map((todo) => {
         return <Todo key={todo.id} todo={todo} />;
+      })}
+      <Box height={12} />
+      <Heading size="md">Completed</Heading>
+      <Box height={3} />
+      {getByStatus(tableData, "Completed").map((todo) => {
+        return <Todo key={todo.id} todo={todo} isChecked />;
       })}
       <Box height={12} />
     </div>
