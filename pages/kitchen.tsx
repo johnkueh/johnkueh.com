@@ -13,7 +13,6 @@ function getByStatus(todos, status: string) {
 }
 
 export default function Kitchen({ tableData }) {
-  console.log(tableData);
   return (
     <div>
       <Head>
@@ -27,26 +26,26 @@ export default function Kitchen({ tableData }) {
       <Heading size="md">Completed</Heading>
       <Box height={3} />
       {getByStatus(tableData, "Completed").map((todo) => {
-        return <Todo todo={todo} isChecked />;
+        return <Todo key={todo.id} todo={todo} isChecked />;
       })}
       <Box height={12} />
       <Heading size="md">In Progress</Heading>
       <Box height={3} />
       {getByStatus(tableData, "In Progress").map((todo) => {
-        return <Todo todo={todo} />;
+        return <Todo key={todo.id} todo={todo} />;
       })}
       <Box height={12} />
       <Heading size="md">Up next</Heading>
       <Box height={3} />
       {getByStatus(tableData, "Next Up").map((todo) => {
-        return <Todo todo={todo} />;
+        return <Todo key={todo.id} todo={todo} />;
       })}
 
       <Box height={12} />
       <Heading size="md">Backlog</Heading>
       <Box height={3} />
       {getByStatus(tableData, undefined).map((todo) => {
-        return <Todo todo={todo} />;
+        return <Todo key={todo.id} todo={todo} />;
       })}
       <Box height={12} />
     </div>
