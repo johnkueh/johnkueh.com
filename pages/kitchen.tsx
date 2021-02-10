@@ -1,8 +1,9 @@
-import { Box, Checkbox, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Heading, Text } from "@chakra-ui/react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import Head from "next/head";
 import React from "react";
+import Todo from "../features/kitchen/Todo";
 import { getTodos } from "../shared/api";
 
 dayjs.extend(relativeTime);
@@ -26,51 +27,28 @@ export default function Kitchen({ tableData }) {
       <Heading size="md">Completed</Heading>
       <Box height={3} />
       {getByStatus(tableData, "Completed").map((todo) => {
-        return (
-          <Flex key={todo.id} align="flex-start" justify="flex-start">
-            <Checkbox isChecked pointerEvents="none" colorScheme="gray">
-              {todo.Name}
-            </Checkbox>
-          </Flex>
-        );
+        return <Todo todo={todo} isChecked />;
       })}
       <Box height={12} />
       <Heading size="md">In Progress</Heading>
       <Box height={3} />
       {getByStatus(tableData, "In Progress").map((todo) => {
-        return (
-          <Flex key={todo.id} align="flex-start" justify="flex-start">
-            <Checkbox pointerEvents="none" colorScheme="gray">
-              {todo.Name}
-            </Checkbox>
-          </Flex>
-        );
+        return <Todo todo={todo} />;
       })}
       <Box height={12} />
       <Heading size="md">Up next</Heading>
       <Box height={3} />
       {getByStatus(tableData, "Next Up").map((todo) => {
-        return (
-          <Flex key={todo.id} align="flex-start" justify="flex-start">
-            <Checkbox pointerEvents="none" colorScheme="gray">
-              {todo.Name}
-            </Checkbox>
-          </Flex>
-        );
+        return <Todo todo={todo} />;
       })}
 
       <Box height={12} />
       <Heading size="md">Backlog</Heading>
       <Box height={3} />
       {getByStatus(tableData, undefined).map((todo) => {
-        return (
-          <Flex key={todo.id} align="flex-start" justify="flex-start">
-            <Checkbox pointerEvents="none" colorScheme="gray">
-              {todo.Name}
-            </Checkbox>
-          </Flex>
-        );
+        return <Todo todo={todo} />;
       })}
+      <Box height={12} />
     </div>
   );
 }
