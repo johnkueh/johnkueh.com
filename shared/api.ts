@@ -100,3 +100,9 @@ export async function getDailyBread() {
 
   return orderBy(data, 'createdTime', 'desc');
 }
+
+export async function getTodos() {
+  return fetch(
+    "http://notion-api.splitbee.io/v1/table/19c8533dca9c4eeb94084be47e4fb6bf"
+  ).then((res) => res.json());
+}

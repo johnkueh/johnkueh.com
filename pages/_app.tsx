@@ -55,7 +55,7 @@ function MyApp({ Component, pageProps }) {
         <HStack py={3} spacing={6}>
           <Link href="/">Blog</Link>
           <Link href="/daily">Daily Bread</Link>
-          <Link href="/projects">Projects</Link>
+          <Link href="/kitchen">Kitchen</Link>
           <Link href="/about">About</Link>
         </HStack>
         <Component {...pageProps} />
