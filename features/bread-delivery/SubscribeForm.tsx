@@ -41,11 +41,10 @@ const SubscribeForm = () => {
       rounded="lg"
       border="1px"
       borderColor="gray.100"
-      p={3}
+      p={5}
     >
-      <Heading size="sm">Bread delivery</Heading>
-      <Box height={1} />
-      <Text fontSize="sm" color="gray.500">
+      <Heading size="md">Bread delivery 🍞💨</Heading>
+      <Text fontSize="16px" color="gray.500">
         I'll send you one email every Wednesday with the latest posts.
       </Text>
       <Box height={3} />
