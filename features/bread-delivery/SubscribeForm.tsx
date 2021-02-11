@@ -18,8 +18,31 @@ type SubscriptionState = typeof STATES[number];
 const SubscribeForm = () => {
   const [status, setStatus] = useState<SubscriptionState>("INITIAL");
   const [email, setEmail] = useState("");
+
+  async function handleSubmit() {
+    setStatus("LOADING");
+    try {
+      await subscribe(email);
+      setStatus("SUCCESS");
+      setEmail("");
+      setTimeout(() => {
+        setStatus("INITIAL");
+      }, 3000);
+    } catch (e) {
+      setStatus("ERROR");
+    }
+  }
+
   return (
-    <Box maxW="480px" rounded="lg" border="1px" borderColor="gray.100" p={3}>
+    <Box
+      onSubmit={handleSubmit}
+      as="form"
+      maxW="480px"
+      rounded="lg"
+      border="1px"
+      borderColor="gray.100"
+      p={3}
+    >
       <Heading size="sm">Bread delivery</Heading>
       <Box height={1} />
       <Text fontSize="sm" color="gray.500">
@@ -45,22 +68,7 @@ const SubscribeForm = () => {
             <Spinner size="sm" color="gray.400" ml="auto" mr={3} />
           )}
           {["INITIAL", "ERROR"].includes(status) && (
-            <Button
-              onClick={async () => {
-                setStatus("LOADING");
-                try {
-                  await subscribe(email);
-                  setStatus("SUCCESS");
-                  setEmail("");
-                  setTimeout(() => {
-                    setStatus("INITIAL");
-                  }, 3000);
-                } catch (e) {
-                  setStatus("ERROR");
-                }
-              }}
-              size="sm"
-            >
+            <Button type="submit" onClick={handleSubmit} size="sm">
               Subscribe
             </Button>
           )}
