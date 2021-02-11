@@ -1,4 +1,5 @@
 import useSWR from 'swr';
+import { Todo } from '../../shared/api';
 import { firestore } from '../../shared/firebase';
 
 export interface Vote {
@@ -6,17 +7,8 @@ export interface Vote {
   count: number;
 }
 
-export function useVote(id: string) {
-  return useSWR(`/votes/${id}`, () => getVote(id));
-}
-
-export async function getVote(id: string) {
-  return firestore.doc(`/votes/${id}`).get().then(docRef => {
-    return {
-      id,
-      ...docRef.data()
-    } as Vote;
-  })
+export function useTodos(initialData?: Todo[]) {
+  return useSWR(`/todos`, { initialData });
 }
 
 export async function incrementVote(id: string, count: number) {

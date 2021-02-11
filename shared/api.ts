@@ -1,4 +1,5 @@
 import { orderBy } from "lodash";
+import { firestore } from './firebase';
 
 function filterPublished(collection: any) {
   return collection.filter(entry => entry['Status'] === "Published") ?? [];
@@ -101,8 +102,39 @@ export async function getDailyBread() {
   return orderBy(data, 'createdTime', 'desc');
 }
 
+export interface Todo {
+  id: string;
+  Name: string;
+  votes: number;
+}
+
 export async function getTodos() {
   return fetch(
     "http://notion-api.splitbee.io/v1/table/19c8533dca9c4eeb94084be47e4fb6bf"
   ).then((res) => res.json());
+}
+
+export interface Vote {
+  id: string;
+  count: number;
+}
+
+export async function getVote(id: string) {
+  return firestore.doc(`/votes/${id}`).get().then(docRef => {
+    return {
+      id,
+      ...docRef.data()
+    } as Vote;
+  })
+}
+
+export async function getTodosWithVotes() {
+  const data = await getTodos();
+  await Promise.all(
+    data.map(async (todo) => {
+      const vote = await getVote(todo.id);
+      todo.votes = vote.count ?? 0;
+    })
+  );
+  return data;
 }

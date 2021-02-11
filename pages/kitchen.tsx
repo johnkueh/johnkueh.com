@@ -1,10 +1,12 @@
 import { Box, Heading, Text } from "@chakra-ui/react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { orderBy } from "lodash";
 import Head from "next/head";
 import React from "react";
-import Todo from "../features/kitchen/Todo";
-import { getTodos } from "../shared/api";
+import { incrementVote, useTodos } from "../features/kitchen/data";
+import TodoCell from "../features/kitchen/TodoCell";
+import { getTodosWithVotes, Todo } from "../shared/api";
 
 dayjs.extend(relativeTime);
 
@@ -13,6 +15,19 @@ function getByStatus(todos, status: string) {
 }
 
 export default function Kitchen({ tableData }) {
+  const { data: todos, mutate } = useTodos(tableData);
+
+  async function handleVote(votedTodo: Todo) {
+    const incrementedCount = votedTodo.votes + 1;
+    mutate(() => {
+      const otherTodos = todos.filter((todo) => todo.id !== votedTodo.id);
+      return [...otherTodos, { ...votedTodo, votes: incrementedCount }];
+    }, false);
+    await incrementVote(votedTodo.id, incrementedCount);
+  }
+
+  const sortedTodos = orderBy(todos, "votes", "desc");
+
   return (
     <div>
       <Head>
@@ -25,27 +40,52 @@ export default function Kitchen({ tableData }) {
       <Box height={12} />
       <Heading size="md">In Progress</Heading>
       <Box height={3} />
-      {getByStatus(tableData, "In Progress").map((todo) => {
-        return <Todo key={todo.id} todo={todo} />;
+      {getByStatus(sortedTodos, "In Progress").map((todo) => {
+        return (
+          <TodoCell
+            key={todo.id}
+            todo={todo}
+            onClickVote={() => handleVote(todo)}
+          />
+        );
       })}
       <Box height={12} />
       <Heading size="md">Up next</Heading>
       <Box height={3} />
-      {getByStatus(tableData, "Next Up").map((todo) => {
-        return <Todo key={todo.id} todo={todo} />;
+      {getByStatus(sortedTodos, "Next Up").map((todo) => {
+        return (
+          <TodoCell
+            key={todo.id}
+            todo={todo}
+            onClickVote={() => handleVote(todo)}
+          />
+        );
       })}
 
       <Box height={12} />
       <Heading size="md">Backlog</Heading>
       <Box height={3} />
-      {getByStatus(tableData, undefined).map((todo) => {
-        return <Todo key={todo.id} todo={todo} />;
+      {getByStatus(sortedTodos, undefined).map((todo) => {
+        return (
+          <TodoCell
+            key={todo.id}
+            todo={todo}
+            onClickVote={() => handleVote(todo)}
+          />
+        );
       })}
       <Box height={12} />
       <Heading size="md">Completed</Heading>
       <Box height={3} />
-      {getByStatus(tableData, "Completed").map((todo) => {
-        return <Todo key={todo.id} todo={todo} isChecked />;
+      {getByStatus(sortedTodos, "Completed").map((todo) => {
+        return (
+          <TodoCell
+            key={todo.id}
+            todo={todo}
+            onClickVote={() => handleVote(todo)}
+            isChecked
+          />
+        );
       })}
       <Box height={12} />
     </div>
@@ -53,7 +93,7 @@ export default function Kitchen({ tableData }) {
 }
 
 export async function getStaticProps() {
-  const data = await getTodos();
+  const data = await getTodosWithVotes();
 
   return {
     props: {
