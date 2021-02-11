@@ -19,10 +19,7 @@ export default function Daily({ tableData }) {
       <Box height={12} />
       <Heading as="h1">🍞 Daily Bread</Heading>
       <Box height={3} />
-      <Text>
-        A new command I give you: Love one another. As I have loved you, so you
-        must love one another.
-      </Text>
+      <Text>A daily journal of unstructured thoughts</Text>
       <Box height={12} />
       {tableData.map(({ id, Name, createdTime, Type, blockMap }) => {
         return (
