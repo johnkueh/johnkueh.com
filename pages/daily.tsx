@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import Head from "next/head";
 import React from "react";
+import SubscribeForm from "../features/bread-delivery/SubscribeForm";
 import DailyBreadIcon from "../features/daily-bread/DailyBreadIcon";
 import DailyBreadRenderer from "../features/daily-bread/DailyBreadRenderer";
 import LikeButton from "../features/like-button/LikeButton";
@@ -19,7 +20,7 @@ export default function Daily({ tableData }) {
       <Box height={12} />
       <Heading as="h1">🍞 Daily Bread</Heading>
       <Box height={3} />
-      <Text>A daily journal of unstructured thoughts</Text>
+      <Text>A day in the life of a software engineer</Text>
       <Box height={12} />
       {tableData.map(({ id, Name, createdTime, Type, blockMap }) => {
         return (
@@ -60,6 +61,11 @@ export default function Daily({ tableData }) {
           </Flex>
         );
       })}
+      <Box height={12} />
+      <Flex justify="center">
+        <SubscribeForm />
+      </Flex>
+      <Box height={20} />
     </div>
   );
 }
