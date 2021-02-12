@@ -4,9 +4,9 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import { orderBy } from "lodash";
 import Head from "next/head";
 import React from "react";
-import { incrementVote, useTodos } from "../features/kitchen/data";
+import { incrementVote, useTodos, useVotes } from "../features/kitchen/data";
 import TodoCell from "../features/kitchen/TodoCell";
-import { getTodosWithVotes, Todo } from "../shared/api";
+import { getTodos, Todo } from "../shared/api";
 
 dayjs.extend(relativeTime);
 
@@ -15,18 +15,27 @@ function getByStatus(todos, status: string) {
 }
 
 export default function Kitchen({ tableData }) {
-  const { data: todos, mutate } = useTodos(tableData);
+  const { data: votes = {}, mutate } = useVotes(
+    tableData.map((todo) => todo.id)
+  );
+  const { data: todos } = useTodos(tableData);
 
   async function handleVote(votedTodo: Todo) {
     const incrementedCount = votedTodo.votes + 1;
     mutate(() => {
-      const otherTodos = todos.filter((todo) => todo.id !== votedTodo.id);
-      return [...otherTodos, { ...votedTodo, votes: incrementedCount }];
+      return {
+        ...votes,
+        [votedTodo.id]: incrementedCount,
+      };
     }, false);
     await incrementVote(votedTodo.id, incrementedCount);
   }
 
-  const sortedTodos = orderBy(todos, "votes", "desc");
+  const todosWithVotes = todos.map((todo) => {
+    todo.votes = votes[todo.id];
+    return todo;
+  });
+  const sortedTodos = orderBy(todosWithVotes, "votes", "desc");
 
   return (
     <div>
@@ -93,7 +102,7 @@ export default function Kitchen({ tableData }) {
 }
 
 export async function getStaticProps() {
-  const data = await getTodosWithVotes();
+  const data = await getTodos();
 
   return {
     props: {

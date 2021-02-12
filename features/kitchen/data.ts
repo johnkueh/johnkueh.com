@@ -1,10 +1,9 @@
 import useSWR from 'swr';
-import { Todo } from '../../shared/api';
+import { getVotes, Todo, Vote } from '../../shared/api';
 import { firestore } from '../../shared/firebase';
 
-export interface Vote {
-  id: string;
-  count: number;
+export function useVotes(ids: string[]) {
+  return useSWR(`/votes`, () => getVotes(ids));
 }
 
 export function useTodos(initialData?: Todo[]) {
