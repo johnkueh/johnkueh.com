@@ -1,4 +1,4 @@
-import { ChakraProvider, HStack } from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
 import * as Fathom from 'fathom-client';
 import Head from "next/head";
 import Router, { useRouter } from 'next/router';
@@ -8,7 +8,6 @@ import "prismjs/themes/prism-tomorrow.css";
 import { useEffect } from 'react';
 import "react-notion/src/styles.css";
 import { SWRConfig } from "swr";
-import Link from "../shared/Link";
 import PageLayout from "../shared/PageLayout";
 
 Router.events.on('routeChangeStart', () => {
@@ -52,12 +51,6 @@ function MyApp({ Component, pageProps }) {
         />
       </Head>
       <PageLayout>
-        <HStack py={3} spacing={6}>
-          <Link href="/">Blog</Link>
-          <Link href="/daily">Daily Bread</Link>
-          <Link href="/kitchen">Kitchen</Link>
-          <Link href="/about">About</Link>
-        </HStack>
         <Component {...pageProps} />
       </PageLayout>
     </ChakraProvider>

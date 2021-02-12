@@ -5,12 +5,13 @@ import { timeFromNow } from "../features/notion-page/time-from-now";
 import { getArticles } from "../shared/api";
 import Link from "../shared/Link";
 import ListOfCards from "../shared/ListOfCards";
+import PublicLayout from "../shared/PublicLayout";
 
 dayjs.extend(relativeTime);
 
 export default function Home({ articles }) {
   return (
-    <>
+    <PublicLayout>
       <Box height={12} />
       <Heading as="h1">Hey, I'm John</Heading>
       <Box height={3} />
@@ -36,7 +37,7 @@ export default function Home({ articles }) {
           href: `/blog/${article.Slug}`,
         }))}
       />
-    </>
+    </PublicLayout>
   );
 }
 

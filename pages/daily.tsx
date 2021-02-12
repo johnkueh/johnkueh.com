@@ -8,12 +8,13 @@ import DailyBreadIcon from "../features/daily-bread/DailyBreadIcon";
 import DailyBreadRenderer from "../features/daily-bread/DailyBreadRenderer";
 import LikeButton from "../features/like-button/LikeButton";
 import { getDailyBread } from "../shared/api";
+import PublicLayout from "../shared/PublicLayout";
 
 dayjs.extend(relativeTime);
 
 export default function Daily({ tableData }) {
   return (
-    <div>
+    <PublicLayout>
       <Head>
         <title>John Kueh - Daily Bread</title>
       </Head>
@@ -66,7 +67,7 @@ export default function Daily({ tableData }) {
         <SubscribeForm />
       </Flex>
       <Box height={20} />
-    </div>
+    </PublicLayout>
   );
 }
 
