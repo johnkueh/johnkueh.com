@@ -128,13 +128,10 @@ export async function getVote(id: string) {
   })
 }
 
-export async function getTodosWithVotes() {
-  const data = await getTodos();
-  await Promise.all(
-    data.map(async (todo) => {
-      const vote = await getVote(todo.id);
-      todo.votes = vote.count ?? 0;
-    })
-  );
-  return data;
+export async function getVotes(ids: string[]) {
+  const votes = await Promise.all(ids.map((id) => getVote(id)));
+  return votes.reduce((acc, curr) => {
+    acc[curr.id] = curr.count ?? 0;
+    return acc;
+  }, {})
 }
