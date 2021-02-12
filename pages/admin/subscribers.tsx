@@ -1,7 +1,18 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
+import { getSubscribers } from "../../shared/adminApi";
 
-const Subscribers = () => {
-  return <Box>Subscribers</Box>;
+const Subscribers = ({ subscribers }) => {
+  return (
+    <Box>
+      <Box height={5} />
+      <Heading size="md">Subscribers ({subscribers.length})</Heading>
+      {subscribers.map(({ id, subscribed }) => (
+        <Box py={2} key={id}>
+          {id}
+        </Box>
+      ))}
+    </Box>
+  );
 };
 
 export async function getServerSideProps({ query }) {
@@ -14,8 +25,12 @@ export async function getServerSideProps({ query }) {
     };
   }
 
+  const subscribers = await getSubscribers();
+
   return {
-    props: {}, // will be passed to the page component as props
+    props: {
+      subscribers,
+    },
   };
 }
 

@@ -8,6 +8,7 @@ import LikeButton from "../../features/like-button/LikeButton";
 import PageRenderer from "../../features/notion-page/PageRenderer";
 import { timeFromNow } from "../../features/notion-page/time-from-now";
 import { getArticle, getArticles } from "../../shared/api";
+import PublicLayout from "../../shared/PublicLayout";
 
 dayjs.extend(relativeTime);
 
@@ -16,7 +17,7 @@ export default function Article({ page, blockMap }) {
   if (router.isFallback) return <Spinner my={5} />;
 
   return (
-    <Box>
+    <PublicLayout>
       <Head>
         <title>{page.Name} | John Kueh</title>
       </Head>
@@ -31,7 +32,7 @@ export default function Article({ page, blockMap }) {
       <Box height={3} />
       <PageRenderer page={page} blockMap={blockMap} />
       <Box height={12} />
-    </Box>
+    </PublicLayout>
   );
 }
 

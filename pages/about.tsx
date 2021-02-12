@@ -3,10 +3,11 @@ import Head from "next/head";
 import React from "react";
 import { getTestimonials } from "../shared/api";
 import Link from "../shared/Link";
+import PublicLayout from "../shared/PublicLayout";
 
 export default function About({ tableData }) {
   return (
-    <div>
+    <PublicLayout>
       <Head>
         <title>About John Kueh</title>
       </Head>
@@ -53,7 +54,7 @@ export default function About({ tableData }) {
           </Box>
         );
       })}
-    </div>
+    </PublicLayout>
   );
 }
 

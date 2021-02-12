@@ -7,6 +7,7 @@ import React from "react";
 import { incrementVote, useTodos, useVotes } from "../features/kitchen/data";
 import TodoCell from "../features/kitchen/TodoCell";
 import { getTodos, Todo } from "../shared/api";
+import PublicLayout from "../shared/PublicLayout";
 
 dayjs.extend(relativeTime);
 
@@ -38,7 +39,7 @@ export default function Kitchen({ tableData }) {
   const sortedTodos = orderBy(todosWithVotes, "votes", "desc");
 
   return (
-    <div>
+    <PublicLayout>
       <Head>
         <title>John Kueh - Kitchen</title>
       </Head>
@@ -97,7 +98,7 @@ export default function Kitchen({ tableData }) {
         );
       })}
       <Box height={12} />
-    </div>
+    </PublicLayout>
   );
 }
 

@@ -4,13 +4,14 @@ import { useRouter } from "next/router";
 import React from "react";
 import PageRenderer from "../../features/notion-page/PageRenderer";
 import { getPage, getProjects } from "../../shared/api";
+import PublicLayout from "../../shared/PublicLayout";
 
 export default function Project({ page, blockMap }) {
   const router = useRouter();
   if (router.isFallback) return <Spinner my={5} />;
 
   return (
-    <Box>
+    <PublicLayout>
       <Head>
         <title>{page.Name} | John Kueh</title>
       </Head>
@@ -21,7 +22,7 @@ export default function Project({ page, blockMap }) {
       <Box height={3} />
       <PageRenderer page={page} blockMap={blockMap} />
       <Box height={12} />
-    </Box>
+    </PublicLayout>
   );
 }
 

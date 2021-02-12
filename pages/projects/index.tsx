@@ -3,10 +3,11 @@ import Head from "next/head";
 import React from "react";
 import { getProjects } from "../../shared/api";
 import ListOfCards from "../../shared/ListOfCards";
+import PublicLayout from "../../shared/PublicLayout";
 
 export default function Projects({ tableData }) {
   return (
-    <div>
+    <PublicLayout>
       <Head>
         <title>John Kueh - Projects</title>
       </Head>
@@ -26,7 +27,7 @@ export default function Projects({ tableData }) {
           href: `/projects/${project.Slug}`,
         }))}
       />
-    </div>
+    </PublicLayout>
   );
 }
 
