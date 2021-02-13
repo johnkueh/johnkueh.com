@@ -1,16 +1,21 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Divider, Flex } from "@chakra-ui/react";
+import Subscriber from "../../features/admin-subscriber/SubscriberRow";
 import { getSubscribers } from "../../shared/adminApi";
 
 const Subscribers = ({ subscribers }) => {
   return (
     <Box>
-      <Box height={5} />
-      <Heading size="md">Subscribers ({subscribers.length})</Heading>
-      {subscribers.map(({ id, subscribed }) => (
-        <Box py={2} key={id}>
-          {id}
-        </Box>
+      <Box height={3} />
+      <Flex px={2} fontSize="15px" color="gray.500">
+        <Box flex={1}>Email ({subscribers.length})</Box>
+        <Box flexBasis="50px"></Box>
+      </Flex>
+      <Box height={3} />
+      <Divider />
+      {subscribers.map((subscriber) => (
+        <Subscriber subscriber={subscriber} />
       ))}
+      <Box height={24} />
     </Box>
   );
 };

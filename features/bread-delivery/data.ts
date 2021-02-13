@@ -10,3 +10,19 @@ export async function subscribe(email: string) {
     subscribed: true
   })
 }
+
+export async function getSubscriber(email: string) {
+  return firestore.doc(`/subscribers/${email}`).get().then(ref => ref.data());
+}
+
+export async function unsubscribe(email: string) {
+  return firestore.doc(`/subscribers/${email}`).set({
+    subscribed: false
+  }, { 
+    merge: true
+  })
+}
+
+export async function destroy(email: string) {
+  return firestore.doc(`/subscribers/${email}`).delete()
+}
