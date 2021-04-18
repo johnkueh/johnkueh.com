@@ -33,7 +33,7 @@ export default function Home({ articles }) {
           id: article.id,
           title: article.Name,
           caption: article.Caption,
-          date: `Updated ${timeFromNow(article.date)}`,
+          date: `Updated ${timeFromNow(article.Date)}`,
           href: `/blog/${article.Slug}`,
         }))}
       />
