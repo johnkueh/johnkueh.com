@@ -1,6 +1,7 @@
 import { Box, Divider, Heading, Text } from "@chakra-ui/react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import SubscribeForm from "../features/bread-delivery/SubscribeForm";
 import { timeFromNow } from "../features/notion-page/time-from-now";
 import { getArticles } from "../shared/api";
 import Link from "../shared/Link";
@@ -17,8 +18,9 @@ export default function Home({ articles }) {
       <Box height={3} />
       <Box maxW="lg">
         <Text>
-          I am a software engineer and hobby chef 🍱, living in Sydney,
-          Australia. Welcome to my tiny corner of creative freedom.
+          I'm a software engineer 🤓 &nbsp;and home chef 🍱, living in Sydney,
+          Australia. Writing is an elusive skill - I am trying to get better at
+          it.
         </Text>
       </Box>
       <Box height={5} />
@@ -37,6 +39,9 @@ export default function Home({ articles }) {
           href: `/blog/${article.Slug}`,
         }))}
       />
+      <Box height={12} />
+      <SubscribeForm />
+      <Box height={12} />
     </PublicLayout>
   );
 }

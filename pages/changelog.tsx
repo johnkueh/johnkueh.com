@@ -4,8 +4,8 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import { orderBy } from "lodash";
 import Head from "next/head";
 import React from "react";
-import { incrementVote, useTodos, useVotes } from "../features/kitchen/data";
-import TodoCell from "../features/kitchen/TodoCell";
+import { incrementVote, useTodos, useVotes } from "../features/changelog/data";
+import TodoCell from "../features/changelog/TodoCell";
 import { getTodos, Todo } from "../shared/api";
 import PublicLayout from "../shared/PublicLayout";
 
@@ -15,7 +15,7 @@ function getByStatus(todos, status: string) {
   return todos.filter((todo) => todo.Status === status);
 }
 
-export default function Kitchen({ tableData }) {
+export default function Changelog({ tableData }) {
   const { data: votes = {}, mutate } = useVotes(
     tableData.map((todo) => todo.id)
   );
@@ -41,12 +41,12 @@ export default function Kitchen({ tableData }) {
   return (
     <PublicLayout>
       <Head>
-        <title>John Kueh - Kitchen</title>
+        <title>John Kueh - Changelog</title>
       </Head>
       <Box height={12} />
-      <Heading as="h1">Kitchen</Heading>
+      <Heading as="h1">Changelog</Heading>
       <Box height={3} />
-      <Text>A list of things I am cooking up for this website</Text>
+      <Text>A list of things I have been working on recently...</Text>
       <Box height={12} />
       <Heading size="md">In Progress</Heading>
       <Box height={3} />

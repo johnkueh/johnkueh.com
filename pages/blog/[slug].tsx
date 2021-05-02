@@ -4,6 +4,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
+import SubscribeForm from "../../features/bread-delivery/SubscribeForm";
 import LikeButton from "../../features/like-button/LikeButton";
 import PageRenderer from "../../features/notion-page/PageRenderer";
 import { timeFromNow } from "../../features/notion-page/time-from-now";
@@ -31,6 +32,8 @@ export default function Article({ page, blockMap }) {
       </Flex>
       <Box height={3} />
       <PageRenderer page={page} blockMap={blockMap} />
+      <Box height={5} />
+      <SubscribeForm />
       <Box height={12} />
     </PublicLayout>
   );

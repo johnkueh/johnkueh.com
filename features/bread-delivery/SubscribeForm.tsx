@@ -43,9 +43,9 @@ const SubscribeForm = () => {
       borderColor="gray.100"
       p={5}
     >
-      <Heading size="md">Bread delivery 🍞💨</Heading>
-      <Text fontSize="16px" color="gray.500">
-        I'll send you one email every Wednesday with the latest posts.
+      <Heading size="md">Follow my writing</Heading>
+      <Text mt={1} fontSize="16px" color="gray.500">
+        Leave your email and I'll drop you a note when new posts are published.
       </Text>
       <Box height={3} />
       <InputGroup>

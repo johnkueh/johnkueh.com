@@ -8,9 +8,8 @@ function PublicLayout({ children }) {
   return (
     <>
       <HStack py={3} spacing={6}>
-        <Link href="/">Blog</Link>
-        <Link href="/daily">Daily Bread</Link>
-        <Link href="/kitchen">Kitchen</Link>
+        <Link href="/">Writing</Link>
+        <Link href="/changelog">Changelog</Link>
         <Link href="/about">About</Link>
       </HStack>
       {children}
