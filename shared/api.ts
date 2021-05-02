@@ -1,15 +1,17 @@
 import { orderBy } from "lodash";
-import { firestore } from './firebase';
+import { firestore } from "./firebase";
 
 function filterPublished(collection: any) {
-  return collection.filter(entry => entry['Status'] === "Published") ?? [];
+  return collection.filter((entry) => entry["Status"] === "Published") ?? [];
 }
 
 function getPageMeta(page: any) {
-  const { properties, created_time: createdTime } = page[Object.keys(page)[0]].value;
+  const { properties, created_time: createdTime } = page[
+    Object.keys(page)[0]
+  ].value;
   return {
     title: properties.title[0][0],
-    createdTime
+    createdTime,
   };
 }
 
@@ -23,7 +25,7 @@ export async function getProjects() {
 
 export async function getPageData(slug: string) {
   const data = await getProjects();
-  return data.find(page => page.Slug === slug);
+  return data.find((page) => page.Slug === slug);
 }
 
 export async function getPage(slug: string) {
@@ -33,8 +35,9 @@ export async function getPage(slug: string) {
   ).then((res) => res.json());
 
   return {
-    page, blockMap
-  }
+    page,
+    blockMap,
+  };
 }
 
 export async function getPageSlugById(id: string) {
@@ -42,10 +45,11 @@ export async function getPageSlugById(id: string) {
     const blockMap = await fetch(
       `https://notion-api.splitbee.io/v1/page/${id}`
     ).then((res) => res.json());
-    const slug = blockMap[Object.keys(blockMap)[0]]?.value.properties.FBDk[0][0]
-    return slug
+    const slug =
+      blockMap[Object.keys(blockMap)[0]]?.value.properties.FBDk[0][0];
+    return slug;
   } catch {
-    return null
+    return null;
   }
 }
 
@@ -59,7 +63,7 @@ export async function getArticles() {
 
 export async function getArticleData(slug: string) {
   const data = await getArticles();
-  return data.find(page => page.Slug === slug);
+  return data.find((page) => page.Slug === slug);
 }
 
 export async function getArticle(slug: string) {
@@ -69,8 +73,9 @@ export async function getArticle(slug: string) {
   ).then((res) => res.json());
 
   return {
-    page, blockMap
-  }
+    page,
+    blockMap,
+  };
 }
 
 export async function getTestimonials() {
@@ -86,20 +91,20 @@ export async function getDailyBread() {
     "https://notion-api.splitbee.io/v1/table/ea4d39a76135405d9c86d4fa4893d62b"
   ).then((res) => res.json());
 
-  const requests = collection.map(async entry => {
+  const requests = collection.map(async (entry) => {
     const entryData = await fetch(
       `https://notion-api.splitbee.io/v1/page/${entry.id}`
-    ).then((res) => res.json())
+    ).then((res) => res.json());
     return {
       ...getPageMeta(entryData),
       ...entry,
-      blockMap: entryData
-    }
-  })
+      blockMap: entryData,
+    };
+  });
 
   const data = await Promise.all(requests);
 
-  return orderBy(data, 'createdTime', 'desc');
+  return orderBy(data, "createdTime", "desc");
 }
 
 export interface Todo {
@@ -120,12 +125,15 @@ export interface Vote {
 }
 
 export async function getVote(id: string) {
-  return firestore.doc(`/votes/${id}`).get().then(docRef => {
-    return {
-      id,
-      ...docRef.data()
-    } as Vote;
-  })
+  return firestore
+    .doc(`/votes/${id}`)
+    .get()
+    .then((docRef) => {
+      return {
+        id,
+        ...docRef.data(),
+      } as Vote;
+    });
 }
 
 export async function getVotes(ids: string[]) {
@@ -133,5 +141,5 @@ export async function getVotes(ids: string[]) {
   return votes.reduce((acc, curr) => {
     acc[curr.id] = curr.count ?? 0;
     return acc;
-  }, {})
+  }, {});
 }
